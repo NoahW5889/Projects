@@ -7,24 +7,42 @@ import java.util.ArrayList;
 
 public class OrderSheet {
 
+	ArrayList<String> codeList = new ArrayList<String>();
+	ArrayList<String> productList = new ArrayList<String>();
+	
 	public OrderSheet(String file) {
 		readCSVFile(file);
 	}
 
 	public ArrayList<String> readCSVFile(String filename){
-		ArrayList<String> ProductList = new ArrayList<String>();
+		
     	try { 
     		for(String each: Files.readAllLines(Paths.get(filename))) {
-    			ProductList.add(each);
-    			
+    			if(each.contains(",")) {
+    			int split = each.indexOf(",");
+    			String code=each.substring(0, split);
+    			String product=each.substring(split+1,each.length());
+    			codeList.add(code);
+    			productList.add(product);
+    			}
+    			else {
+    				codeList.add(each);
+        			productList.add(each);
+    			}
     		}
     	}catch (IOException ex){
             ex.printStackTrace();
         }
-    	System.out.println(ProductList);
-    	  return ProductList;
+    	  return productList;
     }
 	
+	public ArrayList<String> getCodes(){
+		return codeList;
+	}
+	
+	public ArrayList<String> getProducts(){
+		return productList;
+	}
 	
 	
 }
