@@ -3,18 +3,18 @@ package code;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class OrderSheet {
 
-	ArrayList<String> codeList = new ArrayList<String>();
-	ArrayList<String> productList = new ArrayList<String>();
+	private LinkedHashMap<String,String> list;
 	
 	public OrderSheet(String file) {
 		readCSVFile(file);
 	}
 
-	public ArrayList<String> readCSVFile(String filename){
+	public LinkedHashMap<String,String> readCSVFile(String filename){
+		list = new LinkedHashMap<String,String>();
 		
     	try { 
     		for(String each: Files.readAllLines(Paths.get(filename))) {
@@ -22,27 +22,24 @@ public class OrderSheet {
     			int split = each.indexOf(",");
     			String code=each.substring(0, split);
     			String product=each.substring(split+1,each.length());
-    			codeList.add(code);
-    			productList.add(product);
+    			list.put(code, product);
     			}
     			else {
-    				codeList.add(each);
-        			productList.add(each);
+    				list.put(each, each);
     			}
     		}
     	}catch (IOException ex){
             ex.printStackTrace();
         }
-    	  return productList;
+    	  return list;
     }
 	
-	public ArrayList<String> getCodes(){
-		return codeList;
+	public LinkedHashMap<String,String> getList(){
+		return list;
 	}
 	
-	public ArrayList<String> getProducts(){
-		return productList;
+	public int getLength() {
+		return list.size();
 	}
-	
 	
 }
