@@ -142,7 +142,9 @@ public class GUI {
 	}
 
 	public void search(String search2) {
-		_scrollPanel.removeAll();
+		_productPanel.removeAll();
+		_codePanel.removeAll();
+		_textPanel.removeAll();
 		for(int i=0;i<prodList.size();i++) {
 			if(prodList.get(i).toLowerCase().contains(search2.toLowerCase())) {
 				JLabel cod = new JLabel(code.get(i));
@@ -151,9 +153,9 @@ public class GUI {
 				setLabelProperties(sir);
 				JTextField num = new JTextField();
 				num.setColumns(20);
-				_scrollPanel.add(cod);
-				_scrollPanel.add(sir);
-				_scrollPanel.add(num);
+				_codePanel.add(cod);
+				_productPanel.add(sir);
+				_textPanel.add(num);
 			}
 		}
 		
