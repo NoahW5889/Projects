@@ -1,0 +1,69 @@
+REGULAR MILK
+1002,Homo Gal
+2002,2% Gal
+4005,1% Gal
+3301,FF Gal
+1292,Homo 1/2 Gal
+2292,2% 1/2 Gal
+4032,1% 1/2 Gal
+3701,FF 1/2 Gal
+1622,Homo Qt
+2422,2% Qt
+4028,1% Qt
+3622,FF Qt
+1005,Org Homo Gal
+2005,Org 2% Gal
+4010,Org 1% Gal
+3304,Org FF Gal
+1293,Org Homo 1/2 Gal
+2294,Org 2% 1/2 Gal
+4015,Org 1% 1/2 Gal
+3317,Org FF 1/2 Gal
+SPECIALTY MILK
+5806,Choc Gal
+5896,Choc 1/2 Gal
+5131,Int Ch 1/2 Gal
+5126,Int Ch Qt
+4525,Buttermilk Qt
+HALF & HALF
+5334,Ultra H&H 1/2 Gal
+5521,Ultra H&H Qt
+5328,Fresh H&H Qt
+5332,Ultra H&H Pt
+5335,Fresh H&H Pt
+5337,Org H&H Qt
+5336,Org H&H Pt
+5331,Ultra FF H&H Qt
+5333,Ultra FF H&H Pt
+CREAMS
+5325,Ultra Hvy Crm Qt
+5519,Fresh Hvy Crm Qt
+5513,Hvy Whip Crm Qt
+5543,Ultra Hvy Crm Pt
+5538,Fresh Hvy Crm Hpt
+5544,Ultra Hvy Crm Hpt
+5343,Ultra Lt Crm Qt
+5343,Ultra Lt Crm Hpt
+PINTS
+1928,Homo Pt
+2935,2% Pt
+3934,FF Pt
+5829,Low Fat Choc Pt
+5132,Int Choc Pt
+5826,Int Straw Pt
+5129,Int Van Pt
+5885,Int Mocha Cap Pt
+5886,Int Van Cap Pt
+5146,Int Mint Chip Pt
+5182,Int Cookie Dough Pt
+5881,Int Pumpkin Pt
+5896,Egg Nog Pt
+COTTAGE CHEESE
+9386,Pineapple
+9387,Chive
+EGG NOG
+5925,Premium 1/2 Gal
+5918,Regular 1/2 Gal
+5924,Premium Qt
+5921,Regular Qt
+5923,Low Fat Qt
