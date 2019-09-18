@@ -64,35 +64,16 @@ public class GUI {
 		_searchPanel.add(search);
 		_mainPanel.add(_searchPanel);
 		
+		JButton clearBox = new JButton("Clear");
+		clearBox.addActionListener(new clearHandler(this,os));
+		setButtonProperties(clearBox);
+		_searchPanel.add(clearBox);
+		
+		
 		prodList=new ArrayList<String>();
 		code=new ArrayList<String>();
 		
-		
-		for(int i=0;i<os.getCodes().size();i++) {
-			JLabel add = new JLabel(os.getCodes().get(i));
-			setLabelProperties(add);
-			code.add(os.getCodes().get(i));
-			_codePanel.add(add);
-		}
-		
-		for(int i=0;i<os.getProducts().size();i++) {
-			JLabel add = new JLabel(os.getProducts().get(i));
-			setLabelProperties(add);
-			prodList.add(os.getProducts().get(i));
-			_productPanel.add(add);
-		}
-		
-		for(int i=0;i<os.getProducts().size();i++) {
-			if(os.getCodes().get(i).replaceAll("[^0-9]", "").equals("")) {
-				JLabel spacer = new JLabel(os.getCodes().get(i));
-				setLabelProperties(spacer);
-				_textPanel.add(spacer);
-			}
-			else {
-		JTextField text = new JTextField();	
-		_textPanel.add(text);
-			}
-		}
+		settup(os);
 		
 		_scrollPanel=new JPanel();
 		_scrollPanel.setLayout(new BoxLayout(_scrollPanel, BoxLayout.X_AXIS));
@@ -140,6 +121,39 @@ public class GUI {
 		label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.DARK_GRAY, Color.LIGHT_GRAY));
 		}
 	}
+	
+	public void settup(OrderSheet os) {
+		search.setText("");
+		_productPanel.removeAll();
+		_codePanel.removeAll();
+		_textPanel.removeAll();
+		
+		for(int i=0;i<os.getCodes().size();i++) {
+			JLabel add = new JLabel(os.getCodes().get(i));
+			setLabelProperties(add);
+			code.add(os.getCodes().get(i));
+			_codePanel.add(add);
+		}
+		
+		for(int i=0;i<os.getProducts().size();i++) {
+			JLabel add = new JLabel(os.getProducts().get(i));
+			setLabelProperties(add);
+			prodList.add(os.getProducts().get(i));
+			_productPanel.add(add);
+		}
+		
+		for(int i=0;i<os.getProducts().size();i++) {
+			if(os.getCodes().get(i).replaceAll("[^0-9]", "").equals("")) {
+				JLabel spacer = new JLabel(os.getCodes().get(i));
+				setLabelProperties(spacer);
+				_textPanel.add(spacer);
+			}
+			else {
+		JTextField text = new JTextField();	
+		_textPanel.add(text);
+			}
+		}
+	}
 
 	public void search(String search2) {
 		_productPanel.removeAll();
@@ -157,8 +171,22 @@ public class GUI {
 				_productPanel.add(sir);
 				_textPanel.add(num);
 			}
+			else if(prodList.get(i).toUpperCase()==prodList.get(i)) {
+				JLabel title = new JLabel(code.get(i));
+				setLabelProperties(title);
+				JLabel title1 = new JLabel(code.get(i));
+				setLabelProperties(title1);
+				JLabel title2 = new JLabel(code.get(i));
+				setLabelProperties(title2);
+				_codePanel.add(title);
+				_productPanel.add(title1);
+				_textPanel.add(title2);
+			}
 		}
-		
+	}
+	
+	public void clearSearch (OrderSheet os) {
+		settup(os);
 	}
 	
 }
