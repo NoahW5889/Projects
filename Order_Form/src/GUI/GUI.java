@@ -16,9 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 import code.Driver;
+import code.Observer;
 import code.OrderSheet;
 
-public class GUI {
+public class GUI implements Observer{
 
 	private JPanel _mainPanel;
 	private JPanel _scrollPanel;
@@ -26,7 +27,7 @@ public class GUI {
 	private JPanel _codePanel;
 	private JPanel _textPanel;
 	private JPanel _searchPanel;
-	private JTextField search;
+	public static JTextField search;
 	private ArrayList<String> prodList;
 	private ArrayList<String> code;
 	
@@ -55,7 +56,7 @@ public class GUI {
 		
 		_searchPanel = new JPanel();
 		JButton searchBox = new JButton("Search:");
-		searchBox.addActionListener(new searchHandler(this));
+		searchBox.addActionListener(new searchHandler(os));
 		setButtonProperties(searchBox);
 		_searchPanel.add(searchBox);
 		
@@ -65,7 +66,7 @@ public class GUI {
 		_mainPanel.add(_searchPanel);
 		
 		JButton clearBox = new JButton("Clear");
-		clearBox.addActionListener(new clearHandler(this,os));
+		clearBox.addActionListener(new clearHandler(os));
 		setButtonProperties(clearBox);
 		_searchPanel.add(clearBox);
 		
@@ -184,9 +185,11 @@ public class GUI {
 			}
 		}
 	}
-	
-	public void clearSearch (OrderSheet os) {
-		settup(os);
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

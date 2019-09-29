@@ -5,8 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+
 public class OrderSheet {
 
+	private ArrayList<Observer> _observers;	
 	ArrayList<String> codeList = new ArrayList<String>();
 	ArrayList<String> productList = new ArrayList<String>();
 	
@@ -36,12 +38,26 @@ public class OrderSheet {
     	  return productList;
     }
 	
+	public void notifyObservers() {
+		for (Observer obs : _observers) {
+			obs.update();
+		}
+	}
+	
 	public ArrayList<String> getCodes(){
 		return codeList;
 	}
 	
 	public ArrayList<String> getProducts(){
 		return productList;
+	}
+
+	public void clearSearch() {
+		GUI.GUI.search.setText("");
+	}
+	
+	public void search() {
+		String s = GUI.GUI.search.getText();
 	}
 	
 	
