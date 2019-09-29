@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 import code.Driver;
+import code.Form;
 import code.Observer;
 import code.OrderSheet;
 
@@ -28,19 +29,19 @@ public class GUI implements Observer{
 	private JPanel _textPanel;
 	private JPanel _searchPanel;
 	public static JTextField search;
-	private ArrayList<String> prodList;
+	public static ArrayList<String> prodList;
 	private ArrayList<String> code;
 	
-	public GUI(OrderSheet os, JPanel mp, Driver driver) {
+	public GUI(Form form, JPanel mp, Driver driver) {
 	
 		_mainPanel = mp;
 		_mainPanel.setLayout(new BoxLayout(_mainPanel, BoxLayout.Y_AXIS));
 		_productPanel = new JPanel();
-		_productPanel.setLayout(new GridLayout(os.getProducts().size()+3,9));
+		_productPanel.setLayout(new GridLayout(form.getProducts().size()+3,9));
 		_codePanel = new JPanel();
-		_codePanel.setLayout(new GridLayout(os.getCodes().size()+3,9));
+		_codePanel.setLayout(new GridLayout(form.getCodes().size()+3,9));
 		_textPanel = new JPanel();
-		_textPanel.setLayout(new GridLayout(os.getProducts().size()+3,9));
+		_textPanel.setLayout(new GridLayout(form.getProducts().size()+3,9));
 		
 		JLabel upstate = new JLabel("Upstate Farms: (716) 892-3434");
 		setTitleProperties(upstate);
@@ -56,7 +57,7 @@ public class GUI implements Observer{
 		
 		_searchPanel = new JPanel();
 		JButton searchBox = new JButton("Search:");
-		searchBox.addActionListener(new searchHandler(os));
+		searchBox.addActionListener(new searchHandler(form));
 		setButtonProperties(searchBox);
 		_searchPanel.add(searchBox);
 		
@@ -66,7 +67,7 @@ public class GUI implements Observer{
 		_mainPanel.add(_searchPanel);
 		
 		JButton clearBox = new JButton("Clear");
-		clearBox.addActionListener(new clearHandler(os));
+		clearBox.addActionListener(new clearHandler(form));
 		setButtonProperties(clearBox);
 		_searchPanel.add(clearBox);
 		
@@ -74,7 +75,7 @@ public class GUI implements Observer{
 		prodList=new ArrayList<String>();
 		code=new ArrayList<String>();
 		
-		settup(os);
+		setup(form);
 		
 		_scrollPanel=new JPanel();
 		_scrollPanel.setLayout(new BoxLayout(_scrollPanel, BoxLayout.X_AXIS));
@@ -86,7 +87,7 @@ public class GUI implements Observer{
 	}
 	
 	public String getSearch() {
-		return this.search.getText();
+		return GUI.search.getText();
 		
 	}
 	
@@ -123,29 +124,29 @@ public class GUI implements Observer{
 		}
 	}
 	
-	public void settup(OrderSheet os) {
+	public void setup(Form form) {
 		search.setText("");
 		_productPanel.removeAll();
 		_codePanel.removeAll();
 		_textPanel.removeAll();
 		
-		for(int i=0;i<os.getCodes().size();i++) {
-			JLabel add = new JLabel(os.getCodes().get(i));
+		for(int i=0;i<form.getCodes().size();i++) {
+			JLabel add = new JLabel(form.getCodes().get(i));
 			setLabelProperties(add);
-			code.add(os.getCodes().get(i));
+			code.add(form.getCodes().get(i));
 			_codePanel.add(add);
 		}
 		
-		for(int i=0;i<os.getProducts().size();i++) {
-			JLabel add = new JLabel(os.getProducts().get(i));
+		for(int i=0;i<form.getProducts().size();i++) {
+			JLabel add = new JLabel(form.getProducts().get(i));
 			setLabelProperties(add);
-			prodList.add(os.getProducts().get(i));
+			prodList.add(form.getProducts().get(i));
 			_productPanel.add(add);
 		}
 		
-		for(int i=0;i<os.getProducts().size();i++) {
-			if(os.getCodes().get(i).replaceAll("[^0-9]", "").equals("")) {
-				JLabel spacer = new JLabel(os.getCodes().get(i));
+		for(int i=0;i<form.getProducts().size();i++) {
+			if(form.getCodes().get(i).replaceAll("[^0-9]", "").equals("")) {
+				JLabel spacer = new JLabel(form.getCodes().get(i));
 				setLabelProperties(spacer);
 				_textPanel.add(spacer);
 			}
@@ -156,6 +157,7 @@ public class GUI implements Observer{
 		}
 	}
 
+	/*
 	public void search(String search2) {
 		_productPanel.removeAll();
 		_codePanel.removeAll();
@@ -185,10 +187,10 @@ public class GUI implements Observer{
 			}
 		}
 	}
+	*/
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 	

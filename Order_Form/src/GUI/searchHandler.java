@@ -3,18 +3,18 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import code.OrderSheet;
+import code.Form;
 
 public class searchHandler implements ActionListener {
-	private OrderSheet _os;
+	private Form _form;
 	
-	public searchHandler(OrderSheet os) {
-		_os=os;
+	public searchHandler(Form form) {
+		_form=form;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		_os.search();
+		_form.search();
 	}
 
 }

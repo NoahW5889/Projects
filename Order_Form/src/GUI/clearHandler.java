@@ -3,19 +3,19 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import code.OrderSheet;
+import code.Form;
 
 public class clearHandler implements ActionListener{
-	private OrderSheet _os;
+	private Form _form;
 	
-	public clearHandler(OrderSheet os) {
-		_os=os;
+	public clearHandler(Form form) {
+		_form=form;
 	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		_os.clearSearch();
+		_form.clearSearch();
 		
 	}
 

@@ -9,17 +9,17 @@ import GUI.GUI;
 public class Driver implements Runnable {
 
 	
-	private OrderSheet _os;
+	private Form _form;
 	private JFrame _window;
 	private JPanel _mainPanel;
 	
-	public Driver(OrderSheet os) {
-		_os=os;
+	public Driver(Form form) {
+		_form=form;
 	}
 	
 	public static void main(String[] args) {
-		OrderSheet os = new OrderSheet("src/Products");
-		SwingUtilities.invokeLater(new Driver(os));
+		Form form = new Form("src/Products");
+		SwingUtilities.invokeLater(new Driver(form));
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Driver implements Runnable {
 		_mainPanel = new JPanel();
 		_window.getContentPane().add(_mainPanel);
 		
-		new GUI(_os,_mainPanel,this);
+		new GUI(_form,_mainPanel,this);
 		
 		_window.setVisible(true);
 		_window.pack();
