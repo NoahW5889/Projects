@@ -18,7 +18,6 @@ import javax.swing.border.BevelBorder;
 import code.Driver;
 import code.Form;
 import code.Observer;
-import code.OrderSheet;
 
 public class GUI implements Observer{
 
@@ -30,18 +29,17 @@ public class GUI implements Observer{
 	private JPanel _searchPanel;
 	public static JTextField search;
 	public static ArrayList<String> prodList;
-	private ArrayList<String> code;
 	
 	public GUI(Form form, JPanel mp, Driver driver) {
 	
 		_mainPanel = mp;
 		_mainPanel.setLayout(new BoxLayout(_mainPanel, BoxLayout.Y_AXIS));
 		_productPanel = new JPanel();
-		_productPanel.setLayout(new GridLayout(form.getProducts().size()+3,9));
+		_productPanel.setLayout(new GridLayout(form.getList().size()+3,9));
 		_codePanel = new JPanel();
-		_codePanel.setLayout(new GridLayout(form.getCodes().size()+3,9));
+		_codePanel.setLayout(new GridLayout(form.getList().size()+3,9));
 		_textPanel = new JPanel();
-		_textPanel.setLayout(new GridLayout(form.getProducts().size()+3,9));
+		_textPanel.setLayout(new GridLayout(form.getList().size()+3,9));
 		
 		JLabel upstate = new JLabel("Upstate Farms: (716) 892-3434");
 		setTitleProperties(upstate);
@@ -72,8 +70,6 @@ public class GUI implements Observer{
 		_searchPanel.add(clearBox);
 		
 		
-		prodList=new ArrayList<String>();
-		code=new ArrayList<String>();
 		
 		setup(form);
 		
@@ -130,23 +126,40 @@ public class GUI implements Observer{
 		_codePanel.removeAll();
 		_textPanel.removeAll();
 		
-		for(int i=0;i<form.getCodes().size();i++) {
-			JLabel add = new JLabel(form.getCodes().get(i));
-			setLabelProperties(add);
-			code.add(form.getCodes().get(i));
-			_codePanel.add(add);
+		for(int i=0;i<form.getList().size();i++) {
+			if(form.getList().get(i).isSpacer()==true) {
+				JLabel spacer = new JLabel(form.getList().get(i).getProduct());
+				JLabel spacer1 = new JLabel(form.getList().get(i).getProduct());
+				JLabel spacer2 = new JLabel(form.getList().get(i).getProduct());
+				setLabelProperties(spacer);
+				setLabelProperties(spacer1);
+				setLabelProperties(spacer2);
+				_codePanel.add(spacer);
+				_productPanel.add(spacer1);
+				_textPanel.add(spacer2);
+			}
+			else {
+			JLabel addCode = new JLabel(Integer.toString(form.getList().get(i).getCode()));
+			setLabelProperties(addCode);
+			_codePanel.add(addCode);
+			JLabel addProd = new JLabel(form.getList().get(i).getProduct());
+			setLabelProperties(addProd);
+			_productPanel.add(addProd);
+			JTextField text = new JTextField();	
+			_textPanel.add(text);
+			}
 		}
-		
-		for(int i=0;i<form.getProducts().size();i++) {
-			JLabel add = new JLabel(form.getProducts().get(i));
+		/*
+		for(int i=0;i<form.getList().size();i++) {
+			JLabel add = new JLabel(form.getList().get(i).getProduct());
 			setLabelProperties(add);
-			prodList.add(form.getProducts().get(i));
+			//prodList.add(form.getProducts().get(i));
 			_productPanel.add(add);
 		}
-		
-		for(int i=0;i<form.getProducts().size();i++) {
-			if(form.getCodes().get(i).replaceAll("[^0-9]", "").equals("")) {
-				JLabel spacer = new JLabel(form.getCodes().get(i));
+	
+		for(int i=0;i<form.getList().size();i++) {
+			if(form.getList().get(i).getCode().replaceAll("[^0-9]", "").equals("")) {
+				JLabel spacer = new JLabel(Integer.toString(form.getList().get(i).getCode()));
 				setLabelProperties(spacer);
 				_textPanel.add(spacer);
 			}
@@ -155,6 +168,7 @@ public class GUI implements Observer{
 		_textPanel.add(text);
 			}
 		}
+		*/
 	}
 
 	/*

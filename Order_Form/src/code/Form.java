@@ -10,8 +10,7 @@ import java.util.ArrayList;
 public class Form {
 	private String readinFile=null;
 	private ArrayList<Observer> _observers;
-	private ArrayList<String> productList = new ArrayList<String>();
-	private ArrayList<String> codeList = new ArrayList<String>();
+	private ArrayList<Item> List = new ArrayList<Item>();
 	
 	public Form(String file) {
 		readinFile=file;
@@ -19,29 +18,33 @@ public class Form {
 		_observers = new ArrayList<Observer>();
 	}
 
-public ArrayList<String> readCSVFile(String filename){
+public ArrayList<Item> readCSVFile(String filename){
 	
 	try { 
 		for(String each: Files.readAllLines(Paths.get(filename))) {
+			Item hold = new Item(0,"");
 			if(each.contains(",")) {
 			int split = each.indexOf(",");
-			String code=each.substring(0, split);
-			String product=each.substring(split+1,each.length());
-			codeList.add(code);
-			productList.add(product);
+			hold.setCode(Integer.parseInt(each.substring(0, split)));
+			hold.setProduct(each.substring(split+1,each.length()));
+			List.add(hold);
 			}
 			else {
-				codeList.add(each);
-    			productList.add(each);
+				int split = each.indexOf(",");
+				hold.setProduct(each.substring(split+1,each.length()));
+				hold.setSpacer(true);
+    			List.add(hold);
 			}
 		}
 	}catch (IOException ex){
         ex.printStackTrace();
     }
-	  return productList;
+	  return List;
 }
 
-
+public void createList() {
+	readCSVFile(readinFile);
+}
 /*
 public void search() {
 	String searchBox = GUI.GUI.search.getText();
@@ -56,18 +59,11 @@ public void search() {
 	GUI.GUI.this.settup(productList);
 	notifyObservers();
 }
-
-public void clearSearch() {
-	GUI.GUI.search.setText("");
-}
 */
 
-public ArrayList<String> getProducts(){
-	return productList;
-}
 
-public ArrayList<String> getCodes(){
-	return codeList;
+public ArrayList<Item> getList(){
+	return List;
 }
 
 public void addObserver(Observer obs) {
@@ -84,9 +80,4 @@ public void notifyObservers() {
 public void clearSearch() {
 	GUI.GUI.search.setText("");
 }
-
-public void search() {
-	String s = GUI.GUI.search.getText();
-}
-
 }
